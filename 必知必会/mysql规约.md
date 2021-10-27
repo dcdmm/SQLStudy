@@ -7,10 +7,8 @@
 如:
 
 ```mysql
-SELECT 
-    *
-FROM
-    person;
+SELECT *
+FROM person;
 ```
 
 4. 注释
