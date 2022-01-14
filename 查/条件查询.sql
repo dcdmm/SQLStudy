@@ -1,5 +1,5 @@
 # 条件表达式:> < = != <> <= >=
-# 逻辑表达式:
+# 逻辑表达式: and or not ; && || !
 # 逻辑运算符:and or not
 # 模糊查询like between and in is null
 

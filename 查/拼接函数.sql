@@ -1,5 +1,7 @@
 select concat("a", "b", "c");
 
+select concat(1, 2, 3) as 'ffff';  # 类型为字符型
+
 use myemployees;
 
 # 连接字符串
