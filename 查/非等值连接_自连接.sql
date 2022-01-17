@@ -6,7 +6,8 @@ use myemployees;
 SELECT salary, grade_level
 FROM employees e
          JOIN job_grades g
-              ON e.`salary` BETWEEN g.`lowest_sal` AND g.`highest_sal`; # 不是等于
+              ON e.`salary` BETWEEN g.`lowest_sal` AND g.`highest_sal`;
+# 不是等于
 
 # 与上等价
 SELECT salary, grade_level
@@ -24,4 +25,12 @@ SELECT e.employee_id, e.last_name, m.employee_id, m.last_name
 FROM employees e,
      employees m
 WHERE e.`manager_id` = m.`employee_id`;
+
+# 查询每个国家下的部门个数大于2的国家变好
+select country_id, count(*) 部门个数
+from departments d,
+     locations l
+where d.location_id = l.location_id
+group by country_id
+having 部门个数 > 2;
 
