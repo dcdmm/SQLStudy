@@ -17,7 +17,7 @@ create table enum_test
 desc enum_test;
 
 insert into enum_test
-# 只能时枚举类型中的值
+# 只能是枚举类型中的值
 values ('a'),
        ('b'),
        ('c');

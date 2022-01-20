@@ -9,7 +9,7 @@ drop table if exists test_time;
 create table test_time
 (
     t1 datetime,
-    t2 timestamp # 设置的时区变化而变化
+    t2 timestamp  # 根据设置的时区变化而变化
 );
 
 insert into test_time
