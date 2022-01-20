@@ -1,32 +1,115 @@
-/*!40101 SET NAMES utf8 */;
-/*!40101 SET SQL_MODE = ''*/;
-/*!40014 SET @OLD_UNIQUE_CHECKS = @@UNIQUE_CHECKS, UNIQUE_CHECKS = 0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS = @@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS = 0 */;
-/*!40101 SET @OLD_SQL_MODE = @@SQL_MODE, SQL_MODE = 'NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES = @@SQL_NOTES, SQL_NOTES = 0 */;
+drop database if exists `myemployees`;
+create database if not exists `myemployees`;
 
-CREATE DATABASE /*!32312 IF NOT EXISTS */`myemployees` /*!40100 DEFAULT CHARACTER SET gb2312 */;
 
 USE `myemployees`;
 
-/*Table structure for table `departments` */
 
-DROP TABLE IF EXISTS `departments`;
+drop table if exists `jobs`;
+create table `jobs`
+(
+    `job_id`     varchar(10) not null,
+    `job_title`  varchar(35) default null,
+    `min_salary` int(6)      default null,
+    `max_salary` int(6)      default null,
+    primary key (`job_id`)
+) engine = InnoDB
+  default charset = gb2312;
 
-CREATE TABLE `departments`
+insert into `jobs`(`job_id`, `job_title`, `min_salary`, `max_salary`)
+values ('AC_ACCOUNT', 'Public Accountant', 4200, 9000),
+       ('AC_MGR', 'Accounting Manager', 8200, 16000),
+       ('AD_ASST', 'Administration Assistant', 3000, 6000),
+       ('AD_PRES', 'President', 20000, 40000),
+       ('AD_VP', 'Administration Vice President', 15000, 30000),
+       ('FI_ACCOUNT', 'Accountant', 4200, 9000),
+       ('FI_MGR', 'Finance Manager', 8200, 16000),
+       ('HR_REP', 'Human Resources Representative', 4000, 9000),
+       ('IT_PROG', 'Programmer', 4000, 10000),
+       ('MK_MAN', 'Marketing Manager', 9000, 15000),
+       ('MK_REP', 'Marketing Representative', 4000, 9000),
+       ('PR_REP', 'Public Relations Representative', 4500, 10500),
+       ('PU_CLERK', 'Purchasing Clerk', 2500, 5500),
+       ('PU_MAN', 'Purchasing Manager', 8000, 15000),
+       ('SA_MAN', 'Sales Manager', 10000, 20000),
+       ('SA_REP', 'Sales Representative', 6000, 12000),
+       ('SH_CLERK', 'Shipping Clerk', 2500, 5500),
+       ('ST_CLERK', 'Stock Clerk', 2000, 5000),
+       ('ST_MAN', 'Stock Manager', 5500, 8500);
+
+
+# 位置信息表
+drop table if exists `locations`;
+create table `locations`
+(
+    `location_id`    int(11) not null auto_increment,
+    `street_address` varchar(40) default null,
+    `postal_code`    varchar(12) default null,
+    `city`           varchar(30) default null,
+    `state_province` varchar(25) default null,
+    `country_id`     varchar(2)  default null,
+    primary key (`location_id`)
+) engine = InnoDB
+  auto_increment = 3201
+  default charset = gb2312;
+
+insert into `locations`(`location_id`, `street_address`, `postal_code`, `city`, `state_province`, `country_id`)
+values (1000, '1297 Via Cola di Rie', '00989', 'Roma', NULL, 'IT'),
+       (1100, '93091 Calle della Testa', '10934', 'Venice', NULL, 'IT'),
+       (1200, '2017 Shinjuku-ku', '1689', 'Tokyo', 'Tokyo Prefecture', 'JP'),
+       (1300, '9450 Kamiya-cho', '6823', 'Hiroshima', NULL, 'JP'),
+       (1400, '2014 Jabberwocky Rd', '26192', 'Southlake', 'Texas', 'US'),
+       (1500, '2011 Interiors Blvd', '99236', 'South San Francisco', 'California', 'US'),
+       (1600, '2007 Zagora St', '50090', 'South Brunswick', 'New Jersey', 'US'),
+       (1700, '2004 Charade Rd', '98199', 'Seattle', 'Washington', 'US'),
+       (1800, '147 Spadina Ave', 'M5V 2L7', 'Toronto', 'Ontario', 'CA'),
+       (1900, '6092 Boxwood St', 'YSW 9T2', 'Whitehorse', 'Yukon', 'CA'),
+       (2000, '40-5-12 Laogianggen', '190518', 'Beijing', NULL, 'CN'),
+       (2100, '1298 Vileparle (E)', '490231', 'Bombay', 'Maharashtra', 'IN'),
+       (2200, '12-98 Victoria Street', '2901', 'Sydney', 'New South Wales', 'AU'),
+       (2300, '198 Clementi North', '540198', 'Singapore', NULL, 'SG'),
+       (2400, '8204 Arthur St', NULL, 'London', NULL, 'UK'),
+       (2500, 'Magdalen Centre, The Oxford Science Park', 'OX9 9ZB', 'Oxford', 'Oxford', 'UK'),
+       (2600, '9702 Chester Road', '09629850293', 'Stretford', 'Manchester', 'UK'),
+       (2700, 'Schwanthalerstr. 7031', '80925', 'Munich', 'Bavaria', 'DE'),
+       (2800, 'Rua Frei Caneca 1360 ', '01307-002', 'Sao Paulo', 'Sao Paulo', 'BR'),
+       (2900, '20 Rue des Corps-Saints', '1730', 'Geneva', 'Geneve', 'CH'),
+       (3000, 'Murtenstrasse 921', '3095', 'Bern', 'BE', 'CH'),
+       (3100, 'Pieter Breughelstraat 837', '3029SK', 'Utrecht', 'Utrecht', 'NL'),
+       (3200, 'Mariano Escobedo 9991', '11932', 'Mexico City', 'Distrito Federal,', 'MX');
+
+
+# 工资级别表
+drop table if exists `job_grades`;
+create table job_grades
+(
+    grade_level varchar(3),
+    lowest_sal  int, # 该级别下最高工资
+    highest_sal int  # 该级别下最低工资
+);
+
+insert into job_grades(`grade_level`, `lowest_sal`, `highest_sal`)
+values ('A', 1000, 2999),
+       ('B', 3000, 5999),
+       ('C', 6000, 9999),
+       ('D', 10000, 14999),
+       ('E', 15000, 24999),
+       ('F', 25000, 40000);
+
+
+drop table if exists `departments`;
+create table `departments`
 (
     `department_id`   int(4) NOT NULL AUTO_INCREMENT,
-    `department_name` varchar(3) DEFAULT NULL,
-    `manager_id`      int(6)     DEFAULT NULL,
-    `location_id`     int(4)     DEFAULT NULL,
-    PRIMARY KEY (`department_id`),
-    KEY `loc_id_fk` (`location_id`),
-    CONSTRAINT `loc_id_fk` FOREIGN KEY (`location_id`) REFERENCES `locations` (`location_id`)
-) ENGINE = InnoDB
-  AUTO_INCREMENT = 271
-  DEFAULT CHARSET = gb2312;
-
-/*Data for the table `departments` */
+    `department_name` varchar(3) default null,
+    `manager_id`      int(6)     default null,
+    `location_id`     int(4)     default null,
+    primary key (`department_id`),
+    key `loc_id_fk` (`location_id`),
+    constraint `loc_id_fk` foreign key (`location_id`) references `locations` (`location_id`)
+) engine = InnoDB
+  auto_increment = 271
+  default charset = gb2312;
 
 insert into `departments`(`department_id`, `department_name`, `manager_id`, `location_id`)
 values (10, 'Adm', 200, 1700),
@@ -57,33 +140,29 @@ values (10, 'Adm', 200, 1700),
        (260, 'Rec', NULL, 1700),
        (270, 'Pay', NULL, 1700);
 
-/*Table structure for table `employees` */
 
-DROP TABLE IF EXISTS `employees`;
-
-CREATE TABLE `employees`
+drop table if exists `employees`;
+create table `employees`
 (
     `employee_id`    int(6) NOT NULL AUTO_INCREMENT,
-    `first_name`     varchar(20)   DEFAULT NULL,
-    `last_name`      varchar(25)   DEFAULT NULL,
-    `email`          varchar(25)   DEFAULT NULL,
-    `phone_number`   varchar(20)   DEFAULT NULL,
-    `job_id`         varchar(10)   DEFAULT NULL,
-    `salary`         double(10, 2) DEFAULT NULL,
-    `commission_pct` double(4, 2)  DEFAULT NULL,
-    `manager_id`     int(6)        DEFAULT NULL,
-    `department_id`  int(4)        DEFAULT NULL,
-    `hiredate`       datetime      DEFAULT NULL,
-    PRIMARY KEY (`employee_id`),
-    KEY `dept_id_fk` (`department_id`),
-    KEY `job_id_fk` (`job_id`),
-    CONSTRAINT `dept_id_fk` FOREIGN KEY (`department_id`) REFERENCES `departments` (`department_id`),
-    CONSTRAINT `job_id_fk` FOREIGN KEY (`job_id`) REFERENCES `jobs` (`job_id`)
-) ENGINE = InnoDB
-  AUTO_INCREMENT = 207
-  DEFAULT CHARSET = gb2312;
-
-/*Data for the table `employees` */
+    `first_name`     varchar(20)   default null,
+    `last_name`      varchar(25)   default null,
+    `email`          varchar(25)   default null,
+    `phone_number`   varchar(20)   default null,
+    `job_id`         varchar(10)   default null,
+    `salary`         double(10, 2) default null,
+    `commission_pct` double(4, 2)  default null,
+    `manager_id`     int(6)        default null,
+    `department_id`  int(4)        default null,
+    `hiredate`       datetime      default null,
+    primary key (`employee_id`),
+    key `dept_id_fk` (`department_id`),
+    key `job_id_fk` (`job_id`),
+    constraint `dept_id_fk` foreign key (`department_id`) references `departments` (`department_id`),
+    constraint `job_id_fk` foreign key (`job_id`) references `jobs` (`job_id`)
+) engine = InnoDB
+  auto_increment = 207
+  default charset = gb2312;
 
 insert into `employees`(`employee_id`, `first_name`, `last_name`, `email`, `phone_number`, `job_id`, `salary`,
                         `commission_pct`, `manager_id`, `department_id`, `hiredate`)
@@ -242,88 +321,3 @@ values (100, 'Steven', 'K_ing', 'SKING', '515.123.4567', 'AD_PRES', 24000.00, NU
        (206, 'William', 'Gietz', 'WGIETZ', '515.123.8181', 'AC_ACCOUNT', 8300.00, NULL, 205, 110,
         '2016-03-03 00:00:00');
 
-/*Table structure for table `jobs` */
-
-DROP TABLE IF EXISTS `jobs`;
-
-CREATE TABLE `jobs`
-(
-    `job_id`     varchar(10) NOT NULL,
-    `job_title`  varchar(35) DEFAULT NULL,
-    `min_salary` int(6)      DEFAULT NULL,
-    `max_salary` int(6)      DEFAULT NULL,
-    PRIMARY KEY (`job_id`)
-) ENGINE = InnoDB
-  DEFAULT CHARSET = gb2312;
-
-/*Data for the table `jobs` */
-
-insert into `jobs`(`job_id`, `job_title`, `min_salary`, `max_salary`)
-values ('AC_ACCOUNT', 'Public Accountant', 4200, 9000),
-       ('AC_MGR', 'Accounting Manager', 8200, 16000),
-       ('AD_ASST', 'Administration Assistant', 3000, 6000),
-       ('AD_PRES', 'President', 20000, 40000),
-       ('AD_VP', 'Administration Vice President', 15000, 30000),
-       ('FI_ACCOUNT', 'Accountant', 4200, 9000),
-       ('FI_MGR', 'Finance Manager', 8200, 16000),
-       ('HR_REP', 'Human Resources Representative', 4000, 9000),
-       ('IT_PROG', 'Programmer', 4000, 10000),
-       ('MK_MAN', 'Marketing Manager', 9000, 15000),
-       ('MK_REP', 'Marketing Representative', 4000, 9000),
-       ('PR_REP', 'Public Relations Representative', 4500, 10500),
-       ('PU_CLERK', 'Purchasing Clerk', 2500, 5500),
-       ('PU_MAN', 'Purchasing Manager', 8000, 15000),
-       ('SA_MAN', 'Sales Manager', 10000, 20000),
-       ('SA_REP', 'Sales Representative', 6000, 12000),
-       ('SH_CLERK', 'Shipping Clerk', 2500, 5500),
-       ('ST_CLERK', 'Stock Clerk', 2000, 5000),
-       ('ST_MAN', 'Stock Manager', 5500, 8500);
-
-/*Table structure for table `locations` */
-
-DROP TABLE IF EXISTS `locations`;
-
-CREATE TABLE `locations`
-(
-    `location_id`    int(11) NOT NULL AUTO_INCREMENT,
-    `street_address` varchar(40) DEFAULT NULL,
-    `postal_code`    varchar(12) DEFAULT NULL,
-    `city`           varchar(30) DEFAULT NULL,
-    `state_province` varchar(25) DEFAULT NULL,
-    `country_id`     varchar(2)  DEFAULT NULL,
-    PRIMARY KEY (`location_id`)
-) ENGINE = InnoDB
-  AUTO_INCREMENT = 3201
-  DEFAULT CHARSET = gb2312;
-
-/*Data for the table `locations` */
-
-insert into `locations`(`location_id`, `street_address`, `postal_code`, `city`, `state_province`, `country_id`)
-values (1000, '1297 Via Cola di Rie', '00989', 'Roma', NULL, 'IT'),
-       (1100, '93091 Calle della Testa', '10934', 'Venice', NULL, 'IT'),
-       (1200, '2017 Shinjuku-ku', '1689', 'Tokyo', 'Tokyo Prefecture', 'JP'),
-       (1300, '9450 Kamiya-cho', '6823', 'Hiroshima', NULL, 'JP'),
-       (1400, '2014 Jabberwocky Rd', '26192', 'Southlake', 'Texas', 'US'),
-       (1500, '2011 Interiors Blvd', '99236', 'South San Francisco', 'California', 'US'),
-       (1600, '2007 Zagora St', '50090', 'South Brunswick', 'New Jersey', 'US'),
-       (1700, '2004 Charade Rd', '98199', 'Seattle', 'Washington', 'US'),
-       (1800, '147 Spadina Ave', 'M5V 2L7', 'Toronto', 'Ontario', 'CA'),
-       (1900, '6092 Boxwood St', 'YSW 9T2', 'Whitehorse', 'Yukon', 'CA'),
-       (2000, '40-5-12 Laogianggen', '190518', 'Beijing', NULL, 'CN'),
-       (2100, '1298 Vileparle (E)', '490231', 'Bombay', 'Maharashtra', 'IN'),
-       (2200, '12-98 Victoria Street', '2901', 'Sydney', 'New South Wales', 'AU'),
-       (2300, '198 Clementi North', '540198', 'Singapore', NULL, 'SG'),
-       (2400, '8204 Arthur St', NULL, 'London', NULL, 'UK'),
-       (2500, 'Magdalen Centre, The Oxford Science Park', 'OX9 9ZB', 'Oxford', 'Oxford', 'UK'),
-       (2600, '9702 Chester Road', '09629850293', 'Stretford', 'Manchester', 'UK'),
-       (2700, 'Schwanthalerstr. 7031', '80925', 'Munich', 'Bavaria', 'DE'),
-       (2800, 'Rua Frei Caneca 1360 ', '01307-002', 'Sao Paulo', 'Sao Paulo', 'BR'),
-       (2900, '20 Rue des Corps-Saints', '1730', 'Geneva', 'Geneve', 'CH'),
-       (3000, 'Murtenstrasse 921', '3095', 'Bern', 'BE', 'CH'),
-       (3100, 'Pieter Breughelstraat 837', '3029SK', 'Utrecht', 'Utrecht', 'NL'),
-       (3200, 'Mariano Escobedo 9991', '11932', 'Mexico City', 'Distrito Federal,', 'MX');
-
-/*!40101 SET SQL_MODE = @OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS = @OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS = @OLD_UNIQUE_CHECKS */;
-/*!40111 SET SQL_NOTES = @OLD_SQL_NOTES */;
