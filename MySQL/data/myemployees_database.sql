@@ -2,7 +2,7 @@ drop database if exists `myemployees`;
 create database if not exists `myemployees`;
 
 
-USE `myemployees`;
+use `myemployees`;
 
 
 drop table if exists `jobs`;
