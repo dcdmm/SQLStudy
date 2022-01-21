@@ -64,7 +64,8 @@ from boys;
 # 修改beauty表中姓小的女生的电话为9999999999
 update beauty
 set phone = '9999999999'
-where NAME like '小%';
+where NAME like '小%'
+limit 1; # 单行语法可搭配limit关键字
 
 # 修改boys表中id号为2的姓名为张飞,魅力值为10
 update boys
@@ -76,5 +77,5 @@ where id = 2;
 # 删除黄晓明的信息以及他女朋友的信息为:'黄晓明_x','Angelababy_x'
 update beauty b
     inner join boys bo on b.`boyfriend_id` = bo.`id`
-set bo.boyName = '黄晓明_x', b.name = 'Angelababy_x'
+set bo.boyName = '黄晓明_x', b.name = 'Angelababy_x' # 多表字段更新
 where bo.`boyName` = '黄晓明';

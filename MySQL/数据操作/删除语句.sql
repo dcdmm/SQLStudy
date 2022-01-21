@@ -59,8 +59,9 @@ from beauty;
 
 # Single-Table Syntax
 delete
-from beauty
-where phone like '%9'; # With no WHERE clause, all rows are deleted.(只是清空数据)
+from beauty # With no WHERE clause, all rows are deleted.(只是清空数据)
+where phone like '%9'
+limit 1; # 单行语法可搭配limit关键字
 
 # Multiple-Table Syntax
 # 删除张无忌的女朋友的信息
@@ -70,14 +71,14 @@ from beauty b
 where bo.`boyName` = '张无忌';
 
 
-SELECT b.*, bo.*
-FROM beauty b
-         JOIN boys bo
-              ON b.`boyfriend_id` = bo.`id`
+select b.*, bo.*
+from beauty b
+         join boys bo
+              on b.`boyfriend_id` = bo.`id`
 where bo.`boyName` = '黄晓明';
 
 # 删除黄晓明的信息以及他女朋友的信息(相当于从b和bo表中分别删除上面的查询结果b.*和bo.*)
-delete b, bo
+delete b, bo # 要删除的表名
 from beauty b
          inner join boys bo on b.`boyfriend_id` = bo.`id`
 where bo.`boyName` = '黄晓明';

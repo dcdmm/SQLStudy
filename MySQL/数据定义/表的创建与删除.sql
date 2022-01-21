@@ -25,9 +25,12 @@ create table book
 # 查看表结构
 desc book;
 
-INSERT INTO book(bName, price, authorId)
-VALUES ('python', 34.0, NULL),
-       ('c++', 64.5, null);
+# 查看创表语句
+show create table book;
+
+insert into book(bName, price, authorId)
+values ('python', 34.0, NULL),
+       ('c++', 64.5, NUll);
 
 select *
 from book;

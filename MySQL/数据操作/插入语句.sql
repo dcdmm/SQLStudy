@@ -8,7 +8,7 @@ drop table if exists book;
 
 create table book
 (
-    id    int PRIMARY KEY auto_increment,
+    id    int primary key auto_increment,
     bName varchar(20),
     price double
 );
