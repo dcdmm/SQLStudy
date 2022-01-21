@@ -144,7 +144,7 @@ values (10, 'Adm', 200, 1700),
 drop table if exists `employees`;
 create table `employees`
 (
-    `employee_id`    int(6) NOT NULL AUTO_INCREMENT,
+    `employee_id`    int(6) NOT NULL AUTO_INCREMENT,  # 员工id
     `first_name`     varchar(20)   default null,
     `last_name`      varchar(25)   default null,
     `email`          varchar(25)   default null,
@@ -152,7 +152,7 @@ create table `employees`
     `job_id`         varchar(10)   default null,
     `salary`         double(10, 2) default null,
     `commission_pct` double(4, 2)  default null,
-    `manager_id`     int(6)        default null,
+    `manager_id`     int(6)        default null, # 员工领导的id
     `department_id`  int(4)        default null,
     `hiredate`       datetime      default null,
     primary key (`employee_id`),

@@ -11,6 +11,7 @@ IN()                    Whether a value is within a set of values
 NOT IN()	            Whether a value is not within a set of values
 IS NOT NULL             NOT NULL value test
 IS NULL                 NULL value test
+LIKE	                Simple pattern matching
  */
 
 select 1 = NULL; # 不能比较NULL
@@ -29,6 +30,15 @@ select 2 in (0, 3, 5, 7);
 select 'wefwf' in ('wee', 'wefwf', 'weg');
 # IN() can be used to compare row constructors:
 select (3, 4) in ((1, 2), (3, 4));
+
+/*
+通配符:
+    %:任意多个字符,包含0个字符
+	_:任意单个字符
+ */
+# Simple pattern matching(搭配通配符使用)
+select 'duanchao' like '%ch%';
+select 'dmm' like '_m_';
 
 
 

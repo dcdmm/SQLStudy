@@ -1,12 +1,3 @@
-/*
-通配符:
-    %:任意多个字符,包含0个字符
-	_:任意单个字符
- */
-# Simple pattern matching(搭配通配符使用)
-select 'duanchao' like '%ch%';
-select 'dmm' like '_m_';
-
 # Return the length of a string in bytes
 select length('python');
 select length('中国加油');
