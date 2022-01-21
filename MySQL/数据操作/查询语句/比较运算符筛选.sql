@@ -1,5 +1,6 @@
 use myemployees;
 
+
 # 查询工资>12000的员工信息
 select *
 from employees
