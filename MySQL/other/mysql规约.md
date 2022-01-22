@@ -8,7 +8,9 @@
 
 ```mysql
 SELECT *
-FROM person;
+FROM person
+where age > 18
+limit 5;
 ```
 
 4. 注释
