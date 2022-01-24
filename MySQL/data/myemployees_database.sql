@@ -144,7 +144,7 @@ values (10, 'Adm', 200, 1700),
 drop table if exists `employees`;
 create table `employees`
 (
-    `employee_id`    int(6) NOT NULL AUTO_INCREMENT,  # 员工id
+    `employee_id`    int(6) not null auto_increment,  # 员工id
     `first_name`     varchar(20)   default null,
     `last_name`      varchar(25)   default null,
     `email`          varchar(25)   default null,
