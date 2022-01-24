@@ -25,7 +25,7 @@ create table book
 # 查看表结构
 desc book;
 
-# 查看创表语句
+# 查看建表语句
 show create table book;
 
 insert into book(bName, price, authorId)
