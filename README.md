@@ -1,3 +1,3 @@
 # SQLStudy
 
-* MySQL学习笔记(基于MySQL5.7)
+### MySQL:MySQL学习笔记(基于MySQL5.7)
