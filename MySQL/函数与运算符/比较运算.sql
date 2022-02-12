@@ -17,6 +17,9 @@ LIKE	                Simple pattern matching
 select 1 = NULL; # 不能比较NULL
 select 1 = 0; # 0(False)
 
+# 时间类型比较
+select str_to_date('1998-3-2', '%Y-%c-%d') > str_to_date('1998-3-1', '%Y-%c-%d');
+
 select 1 is null, 0 is null, NULL is null;
 
 # 可以比较NULL值的`=`
