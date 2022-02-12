@@ -18,7 +18,7 @@ select 1 = NULL; # 不能比较NULL
 select 1 = 0; # 0(False)
 
 # 时间类型比较
-select str_to_date('1998-3-2', '%Y-%c-%d') > str_to_date('1998-3-1', '%Y-%c-%d');
+select str_to_date('1998-3-2 07:43:34', '%Y-%c-%d %h:%i:%s') > str_to_date('1998-3-1 12:43:34', '%Y-%c-%d %h:%i:%s') ;
 
 select 1 is null, 0 is null, NULL is null;
 

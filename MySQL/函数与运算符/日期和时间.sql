@@ -52,5 +52,7 @@ Specifier	Description
 # Convert a string to a date
 select str_to_date('1998-3-2', '%Y-%c-%d') as out_put;
 
+select str_to_date('1998-3-2 12:43:34', '%Y-%c-%d %h:%i:%s') as out_put;
+
 # Format date as specified
 select date_format(now(), '%y年%m月%d日') as out_put;
