@@ -1,7 +1,7 @@
 use myemployees;
 
 
-# 支持标量子查询、列子查询、表子查询
+# 支持标量子查询、行子查询、列子查询
 
 # 谁的工资比Abel高?
 # A. 查询Abel的工资
@@ -68,12 +68,13 @@ where (employee_id, salary) = (
 );
 
 # 查询各部门中工资比本部门平均工资高的员工的员工号、姓名、工资
+# 列子查询:结果集有一列多行
 # A. 查询各部门的平均工资
 select avg(salary)
 from employees
 group by department_id;
 
-# 行子查询:结果集有一行多列
+# 表子查询:结果集有多行多列
 select employee_id, last_name, salary
 from employees e
          inner join (select avg(salary) ag, department_id

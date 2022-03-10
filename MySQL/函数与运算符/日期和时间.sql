@@ -12,8 +12,7 @@ select day(now());
 
 select hour(now()); # 时
 select minute(now()); # 分
-select second(now());
-# 秒
+select second(now()); # 秒
 
 /*
 Specifier	Description
@@ -54,5 +53,20 @@ select str_to_date('1998-3-2', '%Y-%c-%d') as out_put;
 
 select str_to_date('1998-3-2 12:43:34', '%Y-%c-%d %h:%i:%s') as out_put;
 
+select str_to_date('2022-01-17 17:25:48.549389', '%Y-%c-%d %H:%i:%s.%f');
+
 # Format date as specified
 select date_format(now(), '%y年%m月%d日') as out_put;
+
+# Add time values (intervals) to a date value
+select date_add('2022-01-17 17:25:48.549389', interval 1 second); # 后一秒
+select date_add('2022-01-17 17:25:48.549389', interval -1 second); # 前一秒
+select date_add('2022-01-17 17:25:48.549389', interval 1 minute); # 后一分钟
+select date_add('2022-01-17 17:25:48.549389', interval -1 minute); # 前一分钟
+select date_add('2022-01-17 17:25:48.549389', interval 1 hour);
+select date_add('2022-01-17 17:25:48.549389', interval 1 day);
+select date_add('2022-01-17 17:25:48.549389', interval 1 month);
+select date_add('2022-01-17 17:25:48.549389', interval 1 year);
+
+# 更为推荐(先转换字符串为日期)
+select date_add(str_to_date('2022-03-01 00:00:00.000001', '%Y-%c-%d %H:%i:%s.%f'), interval 1 year) as end_time;
