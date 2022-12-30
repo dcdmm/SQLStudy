@@ -27,7 +27,6 @@ from employees;
 select count(salary)
 from employees;
 
-
 # it returns a count of the number of rows retrieved, whether or not they contain NULL values.
 # InnoDB handles select COUNT(*) and select COUNT(1) operations in the same way. There is no performance difference.
 select count(*)
