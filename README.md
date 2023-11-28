@@ -7,5 +7,5 @@
 ```docker
 docker pull mysql:5.7
 
-docker run -p 3305:3306 -e MYSQL_ROOT_PASSWORD=123456 -d --name mysql_d mysql:5.7
+docker run -p 3305:3306 -e MYSQL_ROOT_PASSWORD=123456 -d --name mysql_d mysql:8.0
 ```
