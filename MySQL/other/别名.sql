@@ -9,4 +9,3 @@ from employees;
 
 select last_name "姓", first_name "名" # 可以省略as关键字
 from employees;
-

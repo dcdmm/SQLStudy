@@ -61,5 +61,3 @@ create table stuinfo_1
 desc stuinfo_1;
 
 show create table stuinfo_1;
-
-

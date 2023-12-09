@@ -82,6 +82,3 @@ delete b, bo # 要删除的表名
 from beauty b
          inner join boys bo on b.`boyfriend_id` = bo.`id`
 where bo.`boyName` = '黄晓明';
-
-
-

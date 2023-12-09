@@ -42,12 +42,3 @@ select (3, 4) in ((1, 2), (3, 4));
 # Simple pattern matching(搭配通配符使用)
 select 'duanchao' like '%ch%';
 select 'dmm' like '_m_';
-
-
-
-
-
-
-
-
-

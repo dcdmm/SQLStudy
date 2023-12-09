@@ -1,8 +1,6 @@
 # SQLStudy
 
-### MySQL:MySQL学习笔记(基于MySQL5.7)
-
-#### docker部署
+#### MySQL8.0 docker部署
 
 ```docker
 docker pull mysql:8.0
