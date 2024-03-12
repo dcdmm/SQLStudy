@@ -1,6 +1,6 @@
 # SQLStudy
 
-#### MySQL8.0 docker部署
+### MySQL8.0 docker部署
 
 ```docker
 docker pull mysql:8.0
