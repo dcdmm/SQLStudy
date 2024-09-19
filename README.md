@@ -1,5 +1,3 @@
-# SQLStudy
-
 ### MySQL8.0 docker部署
 
 ```docker
