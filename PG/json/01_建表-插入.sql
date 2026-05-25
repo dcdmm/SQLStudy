@@ -4,9 +4,10 @@ create table users
 (
     id      serial primary key,
     name    varchar(50) not null,
-    profile jsonb
+    profile jsonb       not null-- 任意结构JSON数据
 );
 
+-- 插入数据
 insert into users (name, profile)
 values ('张三', '{
   "age": 28,
@@ -75,6 +76,10 @@ values ('赵六', '{
   "tags": []
 }');
 
+-- build a jsonb object from pairwise key/value inputs
+-- jsonb_build_object(key1, value1, key2, value2, ...) ===> {"key1": value1, "key2": value2, ...}
+-- build a jsonb array from any inputs
+-- jsonb_build_array(value1, value2, ...) ===> [value1, value2, ...]
 insert into users (name, profile)
 values ('钱七',
         jsonb_build_object(
