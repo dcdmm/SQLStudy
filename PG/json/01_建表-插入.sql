@@ -89,6 +89,11 @@ values ('钱七',
                 'tags', jsonb_build_array('rust', 'wasm')
         ));
 
+insert into users (name, profile)
+values ('陈八', '{
+  "age": 20,
+  "city": "深圳"
+}');
 
 select id, name, profile
 from users;
