@@ -12,7 +12,6 @@ select name,
        profile -> 'tags' -> -1 as last_tag    -- 最后一个元素
 from users;
 
-
 select name,
        profile -> 'address' -> 'district'    as district_jsonb,
        profile -> 'address' ->> 'street'     as street_text,

@@ -95,5 +95,6 @@ values ('陈八', '{
   "city": "深圳"
 }');
 
+-- 查询所有
 select id, name, profile
 from users;
